@@ -2,8 +2,8 @@ import '../style/NavBar.css';
 import DashboardBtn from './DashboardBtn';
 import ProductsBtn from './ProductsBtn';
 import TransactionsBtn from './TransactionsBtn'; 
-import ProductIn from './ProductIn';
-import ProductOut from './ProductOut';
+import ProductInBtn from './ProductInBtn';
+import ProductOutBtn from './ProductOutBtn';
 
 const NavBar = () => {
     return(
@@ -12,8 +12,8 @@ const NavBar = () => {
                 <DashboardBtn />
                 <ProductsBtn />
                 <TransactionsBtn />
-                <ProductIn />
-                <ProductOut />
+                <ProductInBtn />
+                <ProductOutBtn />
             </div>
         </nav>
     );
