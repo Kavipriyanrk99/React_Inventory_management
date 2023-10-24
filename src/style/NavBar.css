@@ -1,6 +1,6 @@
 .NavBar{
     width: 100%;
-    max-width: 250px;
+    max-width: 270px;
     background-color: #DFDDE2;
 
     display: flex;
@@ -21,7 +21,7 @@
     align-items: center;
 }
 
-.Dashboard, .Products, .Transactions, .ProductIn, .ProductOut {
+.DashboardBtn, .ProductsBtn, .TransactionsBtn, .ProductInBtn, .ProductOutBtn {
     margin: 1rem;
 }
 
@@ -30,6 +30,6 @@
     margin: 0.5rem;
 }
 
-:is(.Dashboard, .Products, .Transactions, .ProductIn, .ProductOut) label:hover{
+:is(.DashboardBtn, .ProductsBtn, .TransactionsBtn, .ProductInBtn, .ProductOutBtn ) label:hover{
     color: #E85409;
 }

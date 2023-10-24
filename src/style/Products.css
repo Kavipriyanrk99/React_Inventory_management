@@ -1,0 +1,96 @@
+.Products{
+    width: 100%;
+    margin:1.5rem;
+
+    position: relative;
+}
+
+.Title{
+    padding: 0.5rem;
+    border-bottom: 2px solid #DFDDE2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Title div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.SearchBar label{
+    display: none;
+}
+
+.SearchBar input{
+    margin: 0 1rem;
+    padding: 0.3rem;
+    height: 30px;
+    border: 2.5px solid #3114EC;
+    border-radius: 10px;
+    outline: none;
+}
+
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px 8px 16px;
+    gap: 8px;
+    height: 40px;
+    width: 128px;
+    border: none;
+    background: #3114EC;
+    border-radius: 20px;
+    cursor: pointer;
+}
+  
+.Lable {
+    margin-top: 1px;
+    font-size: 19px;
+    line-height: 22px;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+  
+.Button:hover {
+    background: #4e33fafd;
+}
+  
+.Button:active {
+    background: #3114EC;
+}
+
+.Body{
+    width: 100%;
+}
+
+.OverviewCard{
+    display: flex;
+}
+
+.OverviewCard1, .OverviewCard2{
+    width: 210px;
+    margin: 1rem 3rem 0 0;
+    padding: 1rem;
+    background-color: #3114EC;
+    color: #fff;
+    border-radius: 15px;
+}
+
+:is(.OverviewCard1, .OverviewCard2) h3{
+    padding: 0.4rem 0;
+    font-weight: 900;
+}
+
+:is(.OverviewCard1, .OverviewCard2) p{
+    font-size: 0.9rem;
+}
+
+.DropBoxIcon, .RsIcon{
+    font-size: 2.5rem;
+}
+

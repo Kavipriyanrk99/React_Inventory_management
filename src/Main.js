@@ -1,19 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
 import './style/Main.css';
-import Dashboard from './components/Dashboard';
-import Products from './components/Products';
-import Transactions from './components/Transactions';
-import Productin from './components/Productin';
-import Productout from './components/Productout';
+import Layout from './components/Layout';
+import Dashboard from './components/dashboard/Dashboard';
+import Products from './components/products/Products';
+import Transactions from './components/transactions/Transactions';
+import Productin from './components/productin/Productin';
+import Productout from './components/productout/Productout';
 
 
-const Main = () => {
+const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct }) => {
     return(
         <Routes>
             <Route path='/' element={<Layout />}>
                 <Route index element={<Dashboard />} />
-                <Route path='products' element={<Products />} />
+                <Route path='products' element={<Products products={products} setProducts={setProducts} AddNewBtnDisplay={AddNewBtnDisplay} setAddNewBtnDisplay={setAddNewBtnDisplay} product={product} setProduct={setProduct}/>} />
                 <Route path='transactions' element={<Transactions />} />
                 <Route path='productin' element={<Productin />} />
                 <Route path='productout' element={<Productout />} />

@@ -1,7 +1,7 @@
 import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
 const ProductOutBtn = () => {
     return(
-        <div className="ProductOut">
+        <div className="ProductOutBtn">
             <AiFillMinusCircle className='MenuIcons'></AiFillMinusCircle>
             <label>
                 Products Out

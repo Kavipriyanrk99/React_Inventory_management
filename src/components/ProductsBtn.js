@@ -1,7 +1,7 @@
 import { FaShoppingCart } from "@react-icons/all-files/fa/FaShoppingCart";
 const ProductsBtn = () => {
     return(
-        <div className="Products">
+        <div className="ProductsBtn">
             <FaShoppingCart className='MenuIcons'></FaShoppingCart>
             <label>
                 Products  

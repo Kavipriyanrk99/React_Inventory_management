@@ -1,7 +1,7 @@
 import { BsPlusCircleFill } from "@react-icons/all-files/bs/BsPlusCircleFill";
 const ProductInBtn = () => {
     return(
-        <div className="ProductIn">
+        <div className="ProductInBtn">
             <BsPlusCircleFill className='MenuIcons'></BsPlusCircleFill>
             <label>
                 Products In
