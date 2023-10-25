@@ -1,7 +1,7 @@
 import { AiFillDropboxCircle } from  "@react-icons/all-files/ai/AiFillDropboxCircle";
 import { FaRupeeSign } from  "@react-icons/all-files/fa/FaRupeeSign";
 
-const OverviewCard = () => {
+const OverviewCard = ({ totalPrice, totalStock }) => {
     return(
         <div className="OverviewCard">
             <div className="OverviewCard1">
@@ -11,7 +11,7 @@ const OverviewCard = () => {
                         Stocks In hand
                     </h3>
                     <p>
-                        50000000
+                        {totalStock}
                     </p>
                 </div>
             </div>
@@ -22,7 +22,7 @@ const OverviewCard = () => {
                         Total Price
                     </h3>
                     <p>
-                        500
+                        {totalPrice}
                     </p>
                 </div>
             </div>

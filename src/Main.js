@@ -8,12 +8,27 @@ import Productin from './components/productin/Productin';
 import Productout from './components/productout/Productout';
 
 
-const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct }) => {
+const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock }) => {
     return(
         <Routes>
             <Route path='/' element={<Layout />}>
                 <Route index element={<Dashboard />} />
-                <Route path='products' element={<Products products={products} setProducts={setProducts} AddNewBtnDisplay={AddNewBtnDisplay} setAddNewBtnDisplay={setAddNewBtnDisplay} product={product} setProduct={setProduct}/>} />
+                <Route 
+                    path='products' 
+                    element={
+                        <Products 
+                            products={products} 
+                            setProducts={setProducts} 
+                            AddNewBtnDisplay={AddNewBtnDisplay} 
+                            setAddNewBtnDisplay={setAddNewBtnDisplay} 
+                            product={product} 
+                            setProduct={setProduct}
+                            search={search}
+                            setSearch={setSearch}
+                            totalPrice={totalPrice}
+                            totalStock={totalStock}
+                        />}
+                />
                 <Route path='transactions' element={<Transactions />} />
                 <Route path='productin' element={<Productin />} />
                 <Route path='productout' element={<Productout />} />

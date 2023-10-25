@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import Main from './Main';
 import './style/App.css';
@@ -35,12 +35,26 @@ function App() {
   ]);
   const [AddNewBtnDisplay, setAddNewBtnDisplay] = useState("none");
   const [product, setProduct] = useState({
-    name: "",
-    id: "",
-    buyrate: "",
-    initial_quans: "",
-    description: ""
+    name: '',
+    id: '',
+    buyrate: 0,
+    in: 0,
+    description: ''
   });
+  const [search, setSearch] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalStock, setTotalStock] = useState(0);
+
+  useEffect(() => {
+    let price = 0;
+    let stock = 0;
+    for(let index = 0; index < products.length; index++){
+      price += parseFloat(products[index].price);
+      stock += parseInt(products[index].quantity);
+    }
+    setTotalPrice(price);
+    setTotalStock(stock);
+  }, [products])
 
   return (
     <div className="App">
@@ -52,6 +66,10 @@ function App() {
         setAddNewBtnDisplay={setAddNewBtnDisplay}
         product={product}
         setProduct={setProduct}
+        search={search}
+        setSearch={setSearch}
+        totalPrice={totalPrice}
+        totalStock={totalStock}
       />
     </div>
   );

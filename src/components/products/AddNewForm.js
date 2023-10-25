@@ -1,10 +1,60 @@
 import '../../style/AddNewForm.css';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
-const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct }) => {
+const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct }) => {
+    const handleChange = (e) => {
+        switch(e.target.name){
+            case "product_name":
+                setProduct({...product, name : e.target.value});
+                break;
+            
+            case "product_id":
+                setProduct({...product, id : e.target.value});
+                break;
+            
+            case "buy_rate":
+                setProduct({...product, buyrate : e.target.value});
+                break;
+            
+            case "initial_quans":
+                setProduct({...product, in : e.target.value});
+                break;
+            
+            case "description":
+                setProduct({...product, description : e.target.value});
+                break;
+            
+            default:
+                break;
+        }  
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newProduct = {
+            id: product.id,
+            name: product.name,
+            buyrate: product.buyrate,
+            in: product.in,
+            out: 0,
+            quantity: product.in,
+            price: product.buyrate * product.in
+        }
+        setProducts([...products, newProduct]);
+        setProduct({
+            name: '',
+            id: '',
+            buyrate: '',
+            in: '',
+            description: ''
+        });
+
+        setAddNewBtnDisplay("none");
+    }
+
     return( 
         <div className='FormBackground' style={{display: AddNewBtnDisplay}}>
-            <form className="AddNewForm" onSubmit={(e) => {e.preventDefault()}}>
+            <form className="AddNewForm" onSubmit={handleSubmit}>
                 <AiFillCloseCircle className='CloseIcon' onClick={(e) => {AddNewBtnDisplay === "none" ? setAddNewBtnDisplay("flex") : setAddNewBtnDisplay("none")}}></AiFillCloseCircle>
                 <h1>New Product</h1>
                 <div className="Product-info--form">
@@ -16,6 +66,9 @@ const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct
                             type="text" 
                             name="product_name" 
                             placeholder="Enter product name"
+                            value={product.name}
+                            onChange={handleChange}
+                            required
                         ></input>
                     </div>
                     <div className="Input_container">
@@ -26,6 +79,9 @@ const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct
                             type="text" 
                             name="product_id" 
                             placeholder="Enter product id"
+                            value={product.id}
+                            onChange={handleChange}
+                            required
                         ></input>
                     </div>
                     <div className="Input_container">
@@ -36,6 +92,9 @@ const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct
                             type="number" 
                             name="buy_rate" 
                             placeholder="Enter Buy rate"
+                            value={product.buyrate}
+                            onChange={handleChange}
+                            required
                         ></input>
                     </div>
                     <div className="Input_container">
@@ -46,6 +105,9 @@ const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct
                             type="number" 
                             name="initial_quans" 
                             placeholder="Enter quantity"
+                            value={product.in}
+                            onChange={handleChange}
+                            required
                         ></input>
                     </div>
                     <div className="Input_container">
@@ -53,15 +115,18 @@ const AddNewForm = ({ AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct
                         <textarea 
                             id="description" 
                             className="Input_field" 
-                            name="message" 
+                            name="description" 
                             rows="2" 
                             placeholder="Enter about product" 
                             maxLength={120}
+                            value={product.description}
+                            onChange={handleChange}
                         ></textarea>
                     </div>
                 </div>
                 <div className='BtnContainer'>
                     <button 
+                        type="submit"
                         className="AddBtn"
                     >Add</button>
                     <button className="CancelBtn" onClick={(e) => {AddNewBtnDisplay === "none" ? setAddNewBtnDisplay("flex") : setAddNewBtnDisplay("none")}}>Cancel</button>
