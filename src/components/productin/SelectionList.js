@@ -1,7 +1,7 @@
 import '../../style/SelectionList.css';
 import NotFound from '../errors/NotFound';
 
-const SelectionList = ({ products, setSelect }) => {
+const SelectionList = ({ products, InOutProduct, setInOutProduct }) => {
     return(
         <ul className='SelectionList'>
             {
@@ -9,7 +9,7 @@ const SelectionList = ({ products, setSelect }) => {
                     products.map((product) => (
                         <li 
                             key={product.id}
-                            onClick={(e) => setSelect(product.name)}
+                            onClick={(e) => setInOutProduct({...InOutProduct, name : product.name})}
                         >
                             {product.name}
                         </li>

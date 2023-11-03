@@ -68,7 +68,7 @@
     padding: 0.8rem 0;
 }
 
-.InForm .AddBtn, .CancelBtn {
+.InForm .AddBtn, .ClearBtn {
     width: 100px;
     height: 35px;
     padding: 0.5rem 0;
@@ -82,11 +82,11 @@
     cursor: pointer;
 }
   
-.InForm .AddBtn:hover, .CancelBtn:hover {
+.InForm .AddBtn:hover, .ClearBtn:hover {
     background: #4e33fafd;
 }
 
-.InForm .AddBtn:active, .CancelBtn:active{
+.InForm .AddBtn:active, .ClearBtn:active{
     background: #3114EC;
 }
 

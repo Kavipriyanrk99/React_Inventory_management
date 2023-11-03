@@ -45,6 +45,13 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalStock, setTotalStock] = useState(0);
   const [select, setSelect] = useState("");
+  const [InOutProduct, setInOutProduct] = useState({
+    name: '',
+    id: '',
+    date: new Date().toISOString().split('T')[0],
+    quantity: 0,
+    description: ''
+  });
 
   useEffect(() => {
     let price = 0;
@@ -73,6 +80,8 @@ function App() {
         totalStock={totalStock}
         select={select}
         setSelect={setSelect}
+        InOutProduct={InOutProduct}
+        setInOutProduct={setInOutProduct}
       />
     </div>
   );
