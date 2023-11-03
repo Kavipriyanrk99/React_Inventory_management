@@ -44,6 +44,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalStock, setTotalStock] = useState(0);
+  const [select, setSelect] = useState("");
 
   useEffect(() => {
     let price = 0;
@@ -70,6 +71,8 @@ function App() {
         setSearch={setSearch}
         totalPrice={totalPrice}
         totalStock={totalStock}
+        select={select}
+        setSelect={setSelect}
       />
     </div>
   );

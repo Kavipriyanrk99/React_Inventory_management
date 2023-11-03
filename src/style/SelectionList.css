@@ -1,0 +1,7 @@
+.SelectionList li{
+    padding: 0.3rem;
+}
+
+.SelectionList li:hover{
+    background: #eee;
+}
