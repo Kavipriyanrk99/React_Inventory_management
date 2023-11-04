@@ -44,12 +44,22 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
         setProduct({
             name: '',
             id: '',
-            buyrate: '',
-            in: '',
+            buyrate: 0,
+            in: 0,
             description: ''
         });
 
         setAddNewBtnDisplay("none");
+    }
+
+    const handleClear = () => {
+        setProduct({
+            name: '',
+            id: '',
+            buyrate: 0,
+            in: 0,
+            description: ''
+        });
     }
 
     return( 
@@ -129,7 +139,10 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
                         type="submit"
                         className="AddBtn"
                     >Add</button>
-                    <button className="CancelBtn" onClick={(e) => {AddNewBtnDisplay === "none" ? setAddNewBtnDisplay("flex") : setAddNewBtnDisplay("none")}}>Cancel</button>
+                    <button 
+                        className="ClearBtn" 
+                        onClick={handleClear}
+                    >Clear</button>
                 </div>
             </form>
         </div>

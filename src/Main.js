@@ -8,7 +8,7 @@ import Productin from './components/productin/Productin';
 import Productout from './components/productout/Productout';
 
 
-const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, select, setSelect, InOutProduct, setInOutProduct }) => {
+const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, InProduct, setInProduct, OutProduct, setOutProduct }) => {
     return(
         <Routes>
             <Route path='/' element={<Layout />}>
@@ -38,13 +38,22 @@ const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, pr
                             setProducts={setProducts}
                             search={search}
                             setSearch={setSearch}
-                            select={select}
-                            setSelect={setSelect}
-                            InOutProduct={InOutProduct}
-                            setInOutProduct={setInOutProduct}
+                            InProduct={InProduct}
+                            setInProduct={setInProduct}
                         />} 
                 />
-                <Route path='productout' element={<Productout />} />
+                <Route 
+                    path='productout' 
+                    element={
+                        <Productout 
+                            products={products} 
+                            setProducts={setProducts}
+                            search={search}
+                            setSearch={setSearch}
+                            OutProduct={OutProduct}
+                            setOutProduct={setOutProduct}
+                        />} 
+                    />
             </Route>
         </Routes>
     );

@@ -1,24 +1,24 @@
-import '../../style/InForm.css';
+import '../../style/OutForm.css';
 import NotFound from '../errors/NotFound';
-import SelectionList from './SelectionList';
+import SelectionList from '../productin/SelectionList';
 
-const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
+const OutForm = ({ products, setProducts, OutProduct, setOutProduct }) => {
     const handleChange = (e) => {
         switch(e.target.name){
-            case "in_date":
-                setInProduct({...InProduct, date : e.target.value});
+            case "out_date":
+                setOutProduct({...OutProduct, date : e.target.value});
                 break;
             
             case "product_select":
-                setInProduct({...InProduct, name : e.target.value});
+                setOutProduct({...OutProduct, name : e.target.value});
                 break;
             
             case "quans":
-                setInProduct({...InProduct, quantity : e.target.value});
+                setOutProduct({...OutProduct, quantity : e.target.value});
                 break;
             
             case "description":
-                setInProduct({...InProduct, description : e.target.value});
+                setOutProduct({...OutProduct, description : e.target.value});
                 break;
             
             default:
@@ -26,18 +26,18 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
         }  
     }
 
-    const handleAdd = (e) => {
+    const handleRemove = (e) => {
         e.preventDefault();
-        const product = products.find(product => product.name === InProduct.name);
+        const product = products.find(product => product.name === OutProduct.name);
         if(!product){
             console.log("Product not found");
         }
-        product.in = parseInt(InProduct.quantity) + parseInt(product.in);
+        product.out = parseInt(OutProduct.quantity) + parseInt(product.out);
         product.quantity = parseInt(product.in) - parseInt(product.out);
         product.price = parseFloat(product.buyrate) * parseInt(product.quantity);
-        const filteredArray = products.filter(product => product.name !== InProduct.name);
+        const filteredArray = products.filter(product => product.name !== OutProduct.name);
         setProducts([...filteredArray, product]);
-        setInProduct({
+        setOutProduct({
             name: '',
             id: '',
             date: new Date().toISOString().split('T')[0],
@@ -47,7 +47,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
     }
 
     const handleClear = () => {
-        setInProduct({
+        setOutProduct({
             name: '',
             id: '',
             date: new Date().toISOString().split('T')[0],
@@ -58,17 +58,17 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
 
     return(
         <div className='FormContainer'>
-            <form className="InForm" onSubmit={handleAdd}>
-                <h1>Add Product</h1>
+            <form className="OutForm" onSubmit={handleRemove}>
+                <h1>Remove Product</h1>
                 <div className="Product-info--form">
                     <div className="Input_container">
-                        <label htmlFor="in_date" className="Input_label">Date</label>
+                        <label htmlFor="out_date" className="Input_label">Date</label>
                         <input 
-                            id="in_date" 
+                            id="out_date" 
                             className="Input_field" 
                             type="date" 
-                            name="in_date" 
-                            value={InProduct.date}
+                            name="out_date" 
+                            value={OutProduct.date}
                             onChange={handleChange}
                             min={new Date().toISOString().split('T')[0]} //today's Date
                             required
@@ -81,7 +81,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                             className="Input_field" 
                             type="text" 
                             name="product_select" 
-                            value={InProduct.name}
+                            value={OutProduct.name}
                             onChange={handleChange}
                             placeholder="Enter product name"
                             required
@@ -91,9 +91,9 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                         {
                             products.length ?
                                 <SelectionList 
-                                    products={products.filter(product => (product.name).toLowerCase().includes(InProduct.name.toLowerCase()))}
-                                    InOutProduct={InProduct}
-                                    setInOutProduct={setInProduct}
+                                    products={products.filter(product => (product.name).toLowerCase().includes(OutProduct.name.toLowerCase()))}
+                                    InOutProduct={OutProduct}
+                                    setInOutProduct={setOutProduct}
                                 /> :
                                 <NotFound />
                         }
@@ -106,7 +106,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                             type="number" 
                             name="quans" 
                             placeholder="Enter quantity"
-                            value={InProduct.quantity}
+                            value={OutProduct.quantity}
                             onChange={handleChange}
                             required
                         ></input>
@@ -120,7 +120,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                             rows="2" 
                             placeholder="Enter about product" 
                             maxLength={120}
-                            value={InProduct.description}
+                            value={OutProduct.description}
                             onChange={handleChange}
                         ></textarea>
                     </div>
@@ -128,8 +128,8 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                 <div className='BtnContainer'>
                     <button 
                         type="submit"
-                        className="AddBtn"
-                    >Add</button>
+                        className="RemoveBtn"
+                    >Remove</button>
                     <button 
                         className="ClearBtn"
                         onClick={handleClear}
@@ -141,7 +141,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
     );
 }
 
-export default InForm;
+export default OutForm;
 
 
-//TODO: After adding product - successful animation
+//TODO: After deleting product - successful animation

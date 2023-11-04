@@ -52,3 +52,6 @@ const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay
 }
 
 export default Products;
+
+
+//TODO: Product going negative

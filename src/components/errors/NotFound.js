@@ -8,3 +8,5 @@ const NotFound = ({ msg }) => {
 }
 
 export default NotFound;
+
+//TODO: Not found design

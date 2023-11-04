@@ -44,14 +44,21 @@ function App() {
   const [search, setSearch] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalStock, setTotalStock] = useState(0);
-  const [select, setSelect] = useState("");
-  const [InOutProduct, setInOutProduct] = useState({
+  const [InProduct, setInProduct] = useState({
     name: '',
     id: '',
     date: new Date().toISOString().split('T')[0],
     quantity: 0,
     description: ''
   });
+  const [OutProduct, setOutProduct] = useState({
+    name: '',
+    id: '',
+    date: new Date().toISOString().split('T')[0],
+    quantity: 0,
+    description: ''
+  });
+
 
   useEffect(() => {
     let price = 0;
@@ -78,10 +85,10 @@ function App() {
         setSearch={setSearch}
         totalPrice={totalPrice}
         totalStock={totalStock}
-        select={select}
-        setSelect={setSelect}
-        InOutProduct={InOutProduct}
-        setInOutProduct={setInOutProduct}
+        InProduct={InProduct}
+        setInProduct={setInProduct}
+        OutProduct={OutProduct}
+        setOutProduct={setOutProduct}
       />
     </div>
   );
