@@ -5,6 +5,11 @@ import ProductsTable from './ProductsTable';
 import AddNewForm from './AddNewForm';
 
 const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock }) => {
+    const handleDelete = (e) => {
+        const filteredProducts = products.filter(product => parseInt(product.id) !== parseInt(e.target.id));
+        setProducts(filteredProducts);
+    }
+
     return(
         <section className="Products">
             <div className="Title">
@@ -33,6 +38,7 @@ const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay
                     <ProductsTable
                         products={products.filter(product => (product.name).toLowerCase().includes(search.toLowerCase()))}
                         setProducts={setProducts}
+                        handleDelete={handleDelete}
                     /> : 
                     <NotFound 
                         msg="Products"

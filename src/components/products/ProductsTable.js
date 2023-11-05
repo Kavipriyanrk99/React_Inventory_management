@@ -1,7 +1,9 @@
 import '../../style/ProductsTable.css';
+import {AiFillDelete} from '@react-icons/all-files/ai/AiFillDelete';
 import NotFound from '../errors/NotFound';
 
-const ProductsTable = ({ products, setProducts }) => {
+const ProductsTable = ({ products, setProducts, handleDelete }) => {
+
     return(
         products.length ? 
             <table className="ProductsTable">
@@ -24,7 +26,22 @@ const ProductsTable = ({ products, setProducts }) => {
                                         <td>{product.in}</td>
                                         <td>{product.out}</td>
                                         <td>{product.quantity}</td>
-                                        <td>{product.price}</td>
+                                        <td className='Stock_price'>
+                                            <div>
+                                                {product.price}
+                                            </div>
+                                            <button 
+                                                id={product.id}
+                                                className='DelBtn'
+                                                onClick={handleDelete}
+                                            >
+                                                <AiFillDelete
+                                                    id={product.id}
+                                                    className='DeleteIcon'
+                                                ></AiFillDelete>
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr> 
                                 ))
                     }
@@ -37,3 +54,6 @@ const ProductsTable = ({ products, setProducts }) => {
 }
 
 export default ProductsTable;
+
+
+//TODO: Add Delete button for each product in table 

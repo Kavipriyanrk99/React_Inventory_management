@@ -21,6 +21,39 @@ td, th {
 	font-size: 18px;
 	}
 
+.DelBtn{
+	width: fit-content;
+    height: 27px;
+	padding: 0.2rem 0.5rem;
+	margin: 0 0.5rem;
+    outline: none;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    background: #ec141499;
+    border-radius: 20px;
+    cursor: pointer;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.DelBtn:hover{
+    background: #e70505;;
+}
+
+.DelBtn:active{
+    background: #fe2525ee;
+}
+
+.Stock_price{
+	display: flex;
+	justify-content: space-between;
+}
+	
+
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
