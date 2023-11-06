@@ -60,54 +60,21 @@ function App() {
   });
   const [TransactionHist, setTransactionHist] = useState([
     {
+      transaction_id: 1,
       id: 1,
       date: new Date().toISOString().split('T')[0],
       in: 0,
       out: 1
     },
     {
+      transaction_id: 2,
       id: 2,
       date: new Date().toISOString().split('T')[0],
       in: 2,
       out: 0
     },
     {
-      id: 3,
-      date: new Date().toISOString().split('T')[0],
-      in: 3,
-      out: 0
-    },
-    {
-      id: 1,
-      date: new Date().toISOString().split('T')[0],
-      in: 0,
-      out: 1
-    },
-    {
-      id: 2,
-      date: new Date().toISOString().split('T')[0],
-      in: 2,
-      out: 0
-    },
-    {
-      id: 3,
-      date: new Date().toISOString().split('T')[0],
-      in: 3,
-      out: 0
-    },
-    {
-      id: 1,
-      date: new Date().toISOString().split('T')[0],
-      in: 0,
-      out: 1
-    },
-    {
-      id: 2,
-      date: new Date().toISOString().split('T')[0],
-      in: 2,
-      out: 0
-    },
-    {
+      transaction_id: 3,
       id: 3,
       date: new Date().toISOString().split('T')[0],
       in: 3,

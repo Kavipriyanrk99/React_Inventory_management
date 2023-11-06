@@ -3,6 +3,8 @@ import NotFound from '../errors/NotFound';
 
 const TransactionList = ({products, setProducts, TransactionHist, setTransactionHist}) => {
     const getDayFromDate = (date) => {
+        console.log("getDayFromDate function");
+
         const dateIndex =  new Date(date).getDay();
         switch(dateIndex){
             case 0:
@@ -35,8 +37,17 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
         const allProducts = products;
         const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
         if(product){
-            console.log(product);
             return product.name;
+        }
+
+        return "Invalid";
+    }
+
+    const getQuantityFromId = (id) => {
+        const allProducts = products;
+        const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
+        if(product){
+            return product.quantity;
         }
 
         return "Invalid";
@@ -46,12 +57,12 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
         <ul className='TransactionList'>
             {
                 TransactionHist.length ?
-                    TransactionHist.map((Transaction) => (
+                    [...TransactionHist].reverse().map((Transaction) => (
                         <li 
-                            key={Transaction.id}
+                            key={Transaction.transaction_id}
                         >
                             <div className='DateDay'>
-                                <span>{Transaction.date}</span>
+                                <span>{Transaction.date.split('-').slice(1, 3).reverse().join('-') + '-' + Transaction.date.split('-')[0]}</span>
                                 <span>{getDayFromDate(Transaction.date)}</span>
                             </div>
                             <div className='InOut'>
@@ -65,8 +76,8 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
                                     }
                                 </span>
                                 <div className='Product_details'>
-                                    <span>{getNameFromId(Transaction.id)}</span>
-                                    <span>{Transaction.id}</span>
+                                    <span className='lable'><span>Pdt:</span>{getNameFromId(Transaction.id) + "(" + Transaction.id + ")"}</span>
+                                    <span className='lable'><span >Qt:</span>{ getQuantityFromId(Transaction.id)}</span>
                                 </div>
                             </div>
                         </li>

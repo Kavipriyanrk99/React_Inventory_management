@@ -1,7 +1,7 @@
 import '../../style/Productin.css';
 import InForm from './InForm';
 
-const Productin = ({ products, setProducts, InProduct, setInProduct }) => {
+const Productin = ({ products, setProducts, InProduct, setInProduct, TransactionHist, setTransactionHist }) => {
     return(
         <section className="Productin">
             <div className="Title">
@@ -13,6 +13,8 @@ const Productin = ({ products, setProducts, InProduct, setInProduct }) => {
                     setProducts={setProducts}
                     InProduct={InProduct}
                     setInProduct={setInProduct}
+                    TransactionHist={TransactionHist}
+                    setTransactionHist={setTransactionHist}
                 />
             </div>
         </section>

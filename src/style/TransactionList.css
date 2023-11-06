@@ -17,7 +17,7 @@
 .TransactionList li .DateDay{
     color: #fff;
     background-color: #663dff;
-    background-image: linear-gradient(319deg, #663dff 0%, #aa00ff 37%, #cc4499 100%);
+    background: linear-gradient(109.6deg, rgb(78, 62, 255) 11.2%, rgb(164, 69, 255) 91.1%); 
 }
 
 .TransactionList li .InOut{
@@ -34,4 +34,9 @@
 .InOut .Product_details{
     display: flex;
     flex-direction: column;
+}
+
+.InOut .Product_details .lable span{
+    padding: 0 0.3rem;
+    color: #6e6c6c;
 }

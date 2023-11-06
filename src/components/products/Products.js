@@ -4,7 +4,7 @@ import OverviewCard from './OverviewCard';
 import ProductsTable from './ProductsTable';
 import AddNewForm from './AddNewForm';
 
-const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock }) => {
+const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, TransactionHist, setTransactionHist }) => {
     const handleDelete = (e) => {
         const filteredProducts = products.filter(product => parseInt(product.id) !== parseInt(e.target.id));
         setProducts(filteredProducts);
@@ -52,6 +52,8 @@ const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay
                 setAddNewBtnDisplay={setAddNewBtnDisplay} 
                 product={product}
                 setProduct={setProduct}
+                TransactionHist={TransactionHist}
+                setTransactionHist={setTransactionHist}
             />
         </section>
     );

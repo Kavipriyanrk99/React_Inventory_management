@@ -1,11 +1,11 @@
 import '../../style/AddNewForm.css';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
-const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct }) => {
+const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, TransactionHist, setTransactionHist }) => {
     const handleChange = (e) => {
         switch(e.target.name){
             case "product_name":
-                setProduct({...product, name : e.target.value});
+                setProduct({...product, name : e.target.value, date : new Date().toISOString().split('T')[0]});
                 break;
             
             case "product_id":
@@ -32,13 +32,13 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
     const handleSubmit = (e) => {
         e.preventDefault();
         const newProduct = {
-            id: product.id,
+            id: parseInt(product.id),
             name: product.name,
-            buyrate: product.buyrate,
-            in: product.in,
+            buyrate: parseFloat(product.buyrate),
+            in: parseInt(product.in),
             out: 0,
-            quantity: product.in,
-            price: product.buyrate * product.in
+            quantity: parseInt(product.in),
+            price: parseFloat(product.buyrate) * parseInt(product.in)
         }
         setProducts([...products, newProduct]);
         setProduct({
@@ -50,6 +50,14 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
         });
 
         setAddNewBtnDisplay("none");
+        const newTransaction = {
+            transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
+            id: parseInt(product.id),
+            date: product.date,
+            in: parseInt(product.in),
+            out: 0
+        }
+        setTransactionHist([...TransactionHist, newTransaction]);
     }
 
     const handleClear = () => {

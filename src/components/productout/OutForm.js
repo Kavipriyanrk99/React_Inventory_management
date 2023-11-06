@@ -2,7 +2,17 @@ import '../../style/OutForm.css';
 import NotFound from '../errors/NotFound';
 import SelectionList from '../productin/SelectionList';
 
-const OutForm = ({ products, setProducts, OutProduct, setOutProduct }) => {
+const OutForm = ({ products, setProducts, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
+    const getIdFromName = (name) => {
+        const allProducts = products;
+        const product = allProducts.find((product) => product.name === name);
+        if(product){
+            return product.id;
+        }
+
+        return "Invalid";
+    }
+
     const handleChange = (e) => {
         switch(e.target.name){
             case "out_date":
@@ -10,7 +20,7 @@ const OutForm = ({ products, setProducts, OutProduct, setOutProduct }) => {
                 break;
             
             case "product_select":
-                setOutProduct({...OutProduct, name : e.target.value});
+                setOutProduct({...OutProduct, name : e.target.value, id: getIdFromName(e.target.value.toLowerCase())});
                 break;
             
             case "quans":
@@ -44,6 +54,15 @@ const OutForm = ({ products, setProducts, OutProduct, setOutProduct }) => {
             quantity: 0,
             description: ''
         });
+
+        const newTransaction = {
+            transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
+            id: parseInt(OutProduct.id),
+            date: OutProduct.date,
+            in: 0,
+            out: parseInt(OutProduct.quantity)
+        }
+        setTransactionHist([...TransactionHist, newTransaction]);
     }
 
     const handleClear = () => {

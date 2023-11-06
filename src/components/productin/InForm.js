@@ -2,7 +2,17 @@ import '../../style/InForm.css';
 import NotFound from '../errors/NotFound';
 import SelectionList from './SelectionList';
 
-const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
+const InForm = ({ products, setProducts, InProduct, setInProduct, TransactionHist, setTransactionHist }) => {
+    const getIdFromName = (name) => {
+        const allProducts = products;
+        const product = allProducts.find((product) => product.name === name);
+        if(product){
+            return product.id;
+        }
+
+        return "Invalid";
+    }
+
     const handleChange = (e) => {
         switch(e.target.name){
             case "in_date":
@@ -10,7 +20,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
                 break;
             
             case "product_select":
-                setInProduct({...InProduct, name : e.target.value});
+                setInProduct({...InProduct, name : e.target.value, id: getIdFromName(e.target.value.toLowerCase())});
                 break;
             
             case "quans":
@@ -44,6 +54,16 @@ const InForm = ({ products, setProducts, InProduct, setInProduct }) => {
             quantity: 0,
             description: ''
         });
+
+        const newTransaction = {
+            transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
+            id: parseInt(InProduct.id),
+            date: InProduct.date,
+            in: parseInt(InProduct.quantity),
+            out: 0
+        }
+        console.log(newTransaction);
+        setTransactionHist([...TransactionHist, newTransaction]);
     }
 
     const handleClear = () => {

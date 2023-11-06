@@ -9,7 +9,7 @@ const SelectionList = ({ products, InOutProduct, setInOutProduct }) => {
                     products.map((product) => (
                         <li 
                             key={product.id}
-                            onClick={(e) => setInOutProduct({...InOutProduct, name : product.name})}
+                            onClick={(e) => setInOutProduct({...InOutProduct, name : product.name, id: product.id})}
                         >
                             {product.name}
                         </li>

@@ -1,7 +1,7 @@
 import '../../style/Productout.css';
 import OutForm from "./OutForm";
 
-const Productout = ({ products, setProducts, OutProduct, setOutProduct }) => {
+const Productout = ({ products, setProducts, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
     return(
         <section className="Productout">
             <div className="Title">
@@ -13,6 +13,8 @@ const Productout = ({ products, setProducts, OutProduct, setOutProduct }) => {
                     setProducts={setProducts}
                     OutProduct={OutProduct}
                     setOutProduct={setOutProduct}
+                    TransactionHist={TransactionHist}
+                    setTransactionHist={setTransactionHist}
                 />
             </div>
         </section>

@@ -27,6 +27,8 @@ const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, pr
                             setSearch={setSearch}
                             totalPrice={totalPrice}
                             totalStock={totalStock}
+                            TransactionHist={TransactionHist}
+                            setTransactionHist={setTransactionHist}
                         />}
                 />
                 <Route 
@@ -49,6 +51,8 @@ const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, pr
                             setSearch={setSearch}
                             InProduct={InProduct}
                             setInProduct={setInProduct}
+                            TransactionHist={TransactionHist}
+                            setTransactionHist={setTransactionHist}
                         />} 
                 />
                 <Route 
@@ -61,6 +65,8 @@ const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, pr
                             setSearch={setSearch}
                             OutProduct={OutProduct}
                             setOutProduct={setOutProduct}
+                            TransactionHist={TransactionHist}
+                            setTransactionHist={setTransactionHist}
                         />} 
                     />
             </Route>
