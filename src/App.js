@@ -58,6 +58,62 @@ function App() {
     quantity: 0,
     description: ''
   });
+  const [TransactionHist, setTransactionHist] = useState([
+    {
+      id: 1,
+      date: new Date().toISOString().split('T')[0],
+      in: 0,
+      out: 1
+    },
+    {
+      id: 2,
+      date: new Date().toISOString().split('T')[0],
+      in: 2,
+      out: 0
+    },
+    {
+      id: 3,
+      date: new Date().toISOString().split('T')[0],
+      in: 3,
+      out: 0
+    },
+    {
+      id: 1,
+      date: new Date().toISOString().split('T')[0],
+      in: 0,
+      out: 1
+    },
+    {
+      id: 2,
+      date: new Date().toISOString().split('T')[0],
+      in: 2,
+      out: 0
+    },
+    {
+      id: 3,
+      date: new Date().toISOString().split('T')[0],
+      in: 3,
+      out: 0
+    },
+    {
+      id: 1,
+      date: new Date().toISOString().split('T')[0],
+      in: 0,
+      out: 1
+    },
+    {
+      id: 2,
+      date: new Date().toISOString().split('T')[0],
+      in: 2,
+      out: 0
+    },
+    {
+      id: 3,
+      date: new Date().toISOString().split('T')[0],
+      in: 3,
+      out: 0
+    }
+  ]);
 
 
   useEffect(() => {
@@ -89,6 +145,8 @@ function App() {
         setInProduct={setInProduct}
         OutProduct={OutProduct}
         setOutProduct={setOutProduct}
+        TransactionHist={TransactionHist}
+        setTransactionHist={setTransactionHist}
       />
     </div>
   );

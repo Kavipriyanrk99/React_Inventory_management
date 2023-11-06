@@ -1,0 +1,78 @@
+.Transactions{
+    width: 100%;
+    margin:1.5rem;
+
+    position: relative;
+}
+
+.Transactions.Title{
+    padding: 0.5rem;
+    border-bottom: 2px solid #DFDDE2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Transactions .Title div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Transactions .SearchBar label{
+    display: none;
+}
+
+.Transactions .SearchBar input{
+    margin: 0 1rem;
+    padding: 0.3rem;
+    height: 30px;
+    border: 2.5px solid #3114EC;
+    border-radius: 10px;
+    outline: none;
+}
+
+.Transactions .Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px 8px 16px;
+    gap: 8px;
+    height: 40px;
+    width: 128px;
+    border: none;
+    background: #3114EC;
+    border-radius: 20px;
+    cursor: pointer;
+}
+  
+.Transactions .Lable {
+    margin-top: 1px;
+    font-size: 19px;
+    line-height: 22px;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+  
+.Transactions .Button:hover {
+    background: #4e33fafd;
+}
+  
+.Transactions .Button:active {
+    background: #3114EC;
+}
+
+.Transactions .Body{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.Transactions .TransactionsContainer{
+    height: 80vh;
+    border: 2px solid #3114EC;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: scroll;
+}
