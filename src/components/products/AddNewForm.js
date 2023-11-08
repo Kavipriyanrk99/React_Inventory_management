@@ -43,7 +43,7 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
         setProducts([...products, newProduct]);
         setProduct({
             name: '',
-            id: '',
+            id: 0,
             buyrate: 0,
             in: 0,
             description: ''
@@ -63,7 +63,7 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
     const handleClear = () => {
         setProduct({
             name: '',
-            id: '',
+            id: 0,
             buyrate: 0,
             in: 0,
             description: ''

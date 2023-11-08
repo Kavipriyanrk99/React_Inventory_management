@@ -1,57 +1,61 @@
 import '../../style/TransactionList.css';
 import NotFound from '../errors/NotFound';
+import { useMemo } from 'react';
 
 const TransactionList = ({products, setProducts, TransactionHist, setTransactionHist}) => {
-    const getDayFromDate = (date) => {
+    const getDayFromDate = useMemo(() => {
         console.log("getDayFromDate function");
 
-        const dateIndex =  new Date(date).getDay();
-        switch(dateIndex){
-            case 0:
-                return "Sunday";
-            
-            case 1:
-                return "Monday";
-            
-            case 2:
-                return "Tuesday";
+        return (date) => {
+            const dateIndex = new Date(date).getDay();
+            switch (dateIndex) {
+                case 0:
+                    return "Sunday";
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+                default:
+                    return "Invalid";
+            }
+        };
+    }, []);
 
-            case 3:
-                return "Wednesday";
+    const getNameFromId = useMemo(() => {
+        console.log("getNameFromId function");
 
-            case 4:
-                return "Thursday";
+        return (id) => {
+            const allProducts = products;
+            const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
+            if(product){
+                return product.name;
+            }
 
-            case 5:
-                return "Friday";
+            return "Invalid";
+        };
+    }, [products]);
 
-            case 6:
-                return "Saturday";
+    const getQuantityFromId = useMemo(() => {
+        console.log("getQuantityFromId");
 
-            default:
-                return "Invalid";
-        } 
-    }
+        return (id) => {
+            const allProducts = products;
+            const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
+            if(product){
+                return product.quantity;
+            }
 
-    const getNameFromId = (id) => {
-        const allProducts = products;
-        const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
-        if(product){
-            return product.name;
+            return "Invalid";
         }
-
-        return "Invalid";
-    }
-
-    const getQuantityFromId = (id) => {
-        const allProducts = products;
-        const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
-        if(product){
-            return product.quantity;
-        }
-
-        return "Invalid";
-    }
+    }, [products]);
 
     return(
         <ul className='TransactionList'>

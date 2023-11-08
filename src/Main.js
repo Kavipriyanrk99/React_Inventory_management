@@ -8,7 +8,7 @@ import Productin from './components/productin/Productin';
 import Productout from './components/productout/Productout';
 
 
-const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, InProduct, setInProduct, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
+const Main = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIsProductLoading, products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, InProduct, setInProduct, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
     return(
         <Routes>
             <Route path='/' element={<Layout />}>
@@ -17,6 +17,10 @@ const Main = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, pr
                     path='products' 
                     element={
                         <Products 
+                            ProductFetchError={ProductFetchError}
+                            setProductFetchError={setProductFetchError}
+                            IsProductLoading={IsProductLoading}
+                            setIsProductLoading={setIsProductLoading}
                             products={products} 
                             setProducts={setProducts} 
                             AddNewBtnDisplay={AddNewBtnDisplay} 

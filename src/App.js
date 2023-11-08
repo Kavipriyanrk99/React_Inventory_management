@@ -1,42 +1,15 @@
 import { useState, useEffect } from 'react';
+import ApiRequest from './utils/ApiRequest';
 import Header from './Header';
 import Main from './Main';
 import './style/App.css';
 
 function App() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "laptop",
-      buyrate: 50000,
-      in: 5,
-      out: 0,
-      quantity: 5,
-      price: 250000
-    },
-    {
-      id: 2,
-      name: "soap",
-      buyrate: 50,
-      in: 5,
-      out: 0,
-      quantity: 5,
-      price: 250
-    },
-    {
-      id: 3,
-      name: "shampoo",
-      buyrate: 1,
-      in: 5,
-      out: 0,
-      quantity: 5,
-      price: 5
-    }
-  ]);
+  const [products, setProducts] = useState([]);
   const [AddNewBtnDisplay, setAddNewBtnDisplay] = useState("none");
   const [product, setProduct] = useState({
     name: '',
-    id: '',
+    id: 0,
     buyrate: 0,
     in: 0,
     description: ''
@@ -46,42 +19,47 @@ function App() {
   const [totalStock, setTotalStock] = useState(0);
   const [InProduct, setInProduct] = useState({
     name: '',
-    id: '',
+    id: 0,
     date: new Date().toISOString().split('T')[0],
     quantity: 0,
     description: ''
   });
   const [OutProduct, setOutProduct] = useState({
     name: '',
-    id: '',
+    id: 0,
     date: new Date().toISOString().split('T')[0],
     quantity: 0,
     description: ''
   });
-  const [TransactionHist, setTransactionHist] = useState([
-    {
-      transaction_id: 1,
-      id: 1,
-      date: new Date().toISOString().split('T')[0],
-      in: 0,
-      out: 1
-    },
-    {
-      transaction_id: 2,
-      id: 2,
-      date: new Date().toISOString().split('T')[0],
-      in: 2,
-      out: 0
-    },
-    {
-      transaction_id: 3,
-      id: 3,
-      date: new Date().toISOString().split('T')[0],
-      in: 3,
-      out: 0
-    }
-  ]);
+  const [TransactionHist, setTransactionHist] = useState([]);
+  const [ProductFetchError, setProductFetchError] = useState(null);
+  const [IsProductLoading, setIsProductLoading]   = useState(true);
+  const [TransactionFetchError, setTransactionFetchError] = useState(null);
+  const [IsTransactionLoading, setIsTransactionLoading]   = useState(true);
+  
+  useEffect(() => {
+    setTimeout(async () => {
+      let response = await ApiRequest.fetchItems("http://127.0.0.1:5000/products");
+      if(response.error != null){
+        setProductFetchError(response.error);
+        setIsProductLoading(false);
+      }else{
+        setProducts(response.data);
+        setProductFetchError(null);
+        setIsProductLoading(false);
+      }
 
+      response = await ApiRequest.fetchItems("http://127.0.0.1:5000/transactions");
+      if(response.error != null){
+        setTransactionFetchError(response.error);
+        setIsTransactionLoading(false);
+      }else{
+        setTransactionHist(response.data);
+        setTransactionFetchError(null);
+        setIsTransactionLoading(false);
+      }
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     let price = 0;
@@ -92,12 +70,17 @@ function App() {
     }
     setTotalPrice(price);
     setTotalStock(stock);
-  }, [products])
+  }, [products]);
+  
 
   return (
     <div className="App">
       <Header />
       <Main
+        ProductFetchError={ProductFetchError}
+        setProductFetchError={setProductFetchError}
+        IsProductLoading={IsProductLoading}
+        setIsProductLoading={setIsProductLoading}
         products={products}
         setProducts={setProducts} 
         AddNewBtnDisplay={AddNewBtnDisplay}

@@ -20,30 +20,30 @@ const ProductsTable = ({ products, setProducts, handleDelete }) => {
                 <tbody>
                     {
                         products.map((product) => (
-                                    <tr key={product.id}>
-                                        <td>{product.name}</td>
-                                        <td>{product.buyrate}</td>
-                                        <td>{product.in}</td>
-                                        <td>{product.out}</td>
-                                        <td>{product.quantity}</td>
-                                        <td className='Stock_price'>
-                                            <div>
-                                                {product.price}
-                                            </div>
-                                            <button 
-                                                id={product.id}
-                                                className='DelBtn'
-                                                onClick={handleDelete}
-                                            >
-                                                <AiFillDelete
+                                        <tr key={product.id}>
+                                            <td>{product.name}</td>
+                                            <td>{product.buyrate}</td>
+                                            <td>{product.in}</td>
+                                            <td>{product.out}</td>
+                                            <td>{product.quantity}</td>
+                                            <td className='Stock_price'>
+                                                <div>
+                                                    {product.price}
+                                                </div>
+                                                <button 
                                                     id={product.id}
-                                                    className='DeleteIcon'
-                                                ></AiFillDelete>
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr> 
-                                ))
+                                                    className='DelBtn'
+                                                    onClick={handleDelete}
+                                                >
+                                                    <AiFillDelete
+                                                        id={product.id}
+                                                        className='DeleteIcon'
+                                                    ></AiFillDelete>
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr> 
+                                    ))
                     }
                 </tbody>
             </table> :

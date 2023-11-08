@@ -49,7 +49,7 @@ const OutForm = ({ products, setProducts, OutProduct, setOutProduct, Transaction
         setProducts([...filteredArray, product]);
         setOutProduct({
             name: '',
-            id: '',
+            id: 0,
             date: new Date().toISOString().split('T')[0],
             quantity: 0,
             description: ''
@@ -57,6 +57,7 @@ const OutForm = ({ products, setProducts, OutProduct, setOutProduct, Transaction
 
         const newTransaction = {
             transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
+
             id: parseInt(OutProduct.id),
             date: OutProduct.date,
             in: 0,
@@ -68,7 +69,7 @@ const OutForm = ({ products, setProducts, OutProduct, setOutProduct, Transaction
     const handleClear = () => {
         setOutProduct({
             name: '',
-            id: '',
+            id: 0,
             date: new Date().toISOString().split('T')[0],
             quantity: 0,
             description: ''

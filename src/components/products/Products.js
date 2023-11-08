@@ -1,10 +1,9 @@
 import '../../style/Products.css';
-import NotFound from '../errors/NotFound';
 import OverviewCard from './OverviewCard';
 import ProductsTable from './ProductsTable';
 import AddNewForm from './AddNewForm';
 
-const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, TransactionHist, setTransactionHist }) => {
+const Products = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIsProductLoading, products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, TransactionHist, setTransactionHist }) => {
     const handleDelete = (e) => {
         const filteredProducts = products.filter(product => parseInt(product.id) !== parseInt(e.target.id));
         setProducts(filteredProducts);
@@ -33,16 +32,14 @@ const Products = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay
                     totalPrice={totalPrice}
                     totalStock={totalStock}
                 />
+                { IsProductLoading && <p>Pls wait! Loading...</p>}
+                { ProductFetchError && <p style={{ color: "red" }}>{`${ProductFetchError}`}</p>}
                 {
-                    products.length ? 
-                    <ProductsTable
-                        products={products.filter(product => (product.name).toLowerCase().includes(search.toLowerCase()))}
-                        setProducts={setProducts}
-                        handleDelete={handleDelete}
-                    /> : 
-                    <NotFound 
-                        msg="Products"
-                    />
+                    !IsProductLoading && !ProductFetchError && <ProductsTable
+                                                            products={products.filter(product => (product.name).toLowerCase().includes(search.toLowerCase()))}
+                                                            setProducts={setProducts}
+                                                            handleDelete={handleDelete}
+                                                        />
                 }
             </div>
             <AddNewForm

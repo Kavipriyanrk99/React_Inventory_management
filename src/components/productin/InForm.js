@@ -49,7 +49,7 @@ const InForm = ({ products, setProducts, InProduct, setInProduct, TransactionHis
         setProducts([...filteredArray, product]);
         setInProduct({
             name: '',
-            id: '',
+            id: 0,
             date: new Date().toISOString().split('T')[0],
             quantity: 0,
             description: ''
@@ -62,14 +62,13 @@ const InForm = ({ products, setProducts, InProduct, setInProduct, TransactionHis
             in: parseInt(InProduct.quantity),
             out: 0
         }
-        console.log(newTransaction);
         setTransactionHist([...TransactionHist, newTransaction]);
     }
 
     const handleClear = () => {
         setInProduct({
             name: '',
-            id: '',
+            id: 0,
             date: new Date().toISOString().split('T')[0],
             quantity: 0,
             description: ''
