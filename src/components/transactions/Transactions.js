@@ -1,7 +1,7 @@
 import '../../style/Transactions.css';
 import TransactionList from './TransactionList';
 
-const Transactions = ({products, setProducts, TransactionHist, setTransactionHist}) => {
+const Transactions = ({ TransactionFetchError, setTransactionFetchError, IsTransactionLoading, setIsTransactionLoading, products, setProducts, TransactionHist, setTransactionHist}) => {
     return(
         <section className="Transactions">
             <div className="Title">
@@ -9,12 +9,16 @@ const Transactions = ({products, setProducts, TransactionHist, setTransactionHis
             </div>
             <div className='Body'>
                 <div className='TransactionsContainer'>
-                    <TransactionList 
-                        products={products}
-                        setProducts={setProducts}
-                        TransactionHist={TransactionHist}
-                        setTransactionHist={setTransactionHist}
-                    />
+                    { IsTransactionLoading && <p>Pls wait! Loading...</p>}
+                    { TransactionFetchError && <p style={{ color: "red" }}>{`${TransactionFetchError}`}</p>}
+                    {
+                        !IsTransactionLoading && !TransactionFetchError && <TransactionList 
+                                                                                products={products}
+                                                                                setProducts={setProducts}
+                                                                                TransactionHist={TransactionHist}
+                                                                                setTransactionHist={setTransactionHist}
+                                                                            />
+                    }
                 </div>
             </div>
         </section>

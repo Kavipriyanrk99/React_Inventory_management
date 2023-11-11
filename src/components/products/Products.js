@@ -2,11 +2,23 @@ import '../../style/Products.css';
 import OverviewCard from './OverviewCard';
 import ProductsTable from './ProductsTable';
 import AddNewForm from './AddNewForm';
+import ApiRequest from '../../utils/ApiRequest';
 
 const Products = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIsProductLoading, products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, TransactionHist, setTransactionHist }) => {
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         const filteredProducts = products.filter(product => parseInt(product.id) !== parseInt(e.target.id));
         setProducts(filteredProducts);
+
+        const delId = {
+            id : parseInt(e.target.id)
+        }
+        await ApiRequest.handleItems("http://127.0.0.1:5000/products", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(delId)
+        });
     }
 
     return(

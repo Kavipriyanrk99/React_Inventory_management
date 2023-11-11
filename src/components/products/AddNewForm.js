@@ -1,5 +1,6 @@
 import '../../style/AddNewForm.css';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
+import ApiRequest from '../../utils/ApiRequest';
 
 const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, TransactionHist, setTransactionHist }) => {
     const handleChange = (e) => {
@@ -29,7 +30,7 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
         }  
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newProduct = {
             id: parseInt(product.id),
@@ -38,9 +39,39 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
             in: parseInt(product.in),
             out: 0,
             quantity: parseInt(product.in),
-            price: parseFloat(product.buyrate) * parseInt(product.in)
+            price: parseFloat(product.buyrate) * parseInt(product.in),
+            description: product.description
         }
         setProducts([...products, newProduct]);
+        setAddNewBtnDisplay("none");
+        
+        await ApiRequest.handleItems("http://127.0.0.1:5000/products", {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+            });
+
+        const newTransaction = {
+            transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
+            id: parseInt(product.id),
+            name: product.name,
+            date: product.date,
+            in: parseInt(product.in),
+            out: 0,
+            quantity: parseInt(product.in),
+            description: product.description
+        }
+        setTransactionHist([...TransactionHist, newTransaction]);
+        await ApiRequest.handleItems("http://127.0.0.1:5000/transactions", {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(newTransaction)
+        });
+
         setProduct({
             name: '',
             id: 0,
@@ -48,16 +79,6 @@ const AddNewForm = ({ products, setProducts, AddNewBtnDisplay, setAddNewBtnDispl
             in: 0,
             description: ''
         });
-
-        setAddNewBtnDisplay("none");
-        const newTransaction = {
-            transaction_id: TransactionHist.length > 0 ? TransactionHist[TransactionHist.length - 1].transaction_id + 1 : 0,
-            id: parseInt(product.id),
-            date: product.date,
-            in: parseInt(product.in),
-            out: 0
-        }
-        setTransactionHist([...TransactionHist, newTransaction]);
     }
 
     const handleClear = () => {

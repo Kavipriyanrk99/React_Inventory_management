@@ -7,7 +7,11 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
         console.log("getDayFromDate function");
 
         return (date) => {
-            const dateIndex = new Date(date).getDay();
+            const dateArray = date.split('-');
+            const month = parseInt(dateArray[0], 10);
+            const day = parseInt(dateArray[1], 10);
+            const year = parseInt(dateArray[2], 10);
+            const dateIndex = new Date(year, month - 1, day).getDay();
             switch (dateIndex) {
                 case 0:
                     return "Sunday";
@@ -28,34 +32,6 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
             }
         };
     }, []);
-
-    const getNameFromId = useMemo(() => {
-        console.log("getNameFromId function");
-
-        return (id) => {
-            const allProducts = products;
-            const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
-            if(product){
-                return product.name;
-            }
-
-            return "Invalid";
-        };
-    }, [products]);
-
-    const getQuantityFromId = useMemo(() => {
-        console.log("getQuantityFromId");
-
-        return (id) => {
-            const allProducts = products;
-            const product = allProducts.find((product) => parseInt(product.id) === parseInt(id));
-            if(product){
-                return product.quantity;
-            }
-
-            return "Invalid";
-        }
-    }, [products]);
 
     return(
         <ul className='TransactionList'>
@@ -80,8 +56,8 @@ const TransactionList = ({products, setProducts, TransactionHist, setTransaction
                                     }
                                 </span>
                                 <div className='Product_details'>
-                                    <span className='lable'><span>Pdt:</span>{getNameFromId(Transaction.id) + "(" + Transaction.id + ")"}</span>
-                                    <span className='lable'><span >Qt:</span>{ getQuantityFromId(Transaction.id)}</span>
+                                    <span className='lable'><span>Pdt:</span>{Transaction.name + "(" + Transaction.id + ")"}</span>
+                                    <span className='lable'><span >Qt:</span>{ Transaction.quantity }</span>
                                 </div>
                             </div>
                         </li>

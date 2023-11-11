@@ -8,7 +8,7 @@ import Productin from './components/productin/Productin';
 import Productout from './components/productout/Productout';
 
 
-const Main = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIsProductLoading, products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, InProduct, setInProduct, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
+const Main = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIsProductLoading, TransactionFetchError, setTransactionFetchError, IsTransactionLoading, setIsTransactionLoading, products, setProducts, AddNewBtnDisplay, setAddNewBtnDisplay, product, setProduct, search, setSearch, totalPrice, totalStock, InProduct, setInProduct, OutProduct, setOutProduct, TransactionHist, setTransactionHist }) => {
     return(
         <Routes>
             <Route path='/' element={<Layout />}>
@@ -38,7 +38,11 @@ const Main = ({ ProductFetchError, setProductFetchError, IsProductLoading, setIs
                 <Route 
                     path='transactions' 
                     element={
-                        <Transactions 
+                        <Transactions
+                            TransactionFetchError={TransactionFetchError}
+                            setTransactionFetchError={setTransactionFetchError}
+                            IsTransactionLoading={IsTransactionLoading}
+                            setIsTransactionLoading={setIsTransactionLoading} 
                             products={products}
                             setProducts={setProducts}
                             TransactionHist={TransactionHist}

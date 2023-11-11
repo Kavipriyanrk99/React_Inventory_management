@@ -81,6 +81,10 @@ function App() {
         setProductFetchError={setProductFetchError}
         IsProductLoading={IsProductLoading}
         setIsProductLoading={setIsProductLoading}
+        TransactionFetchError={TransactionFetchError}
+        setTransactionFetchError={setTransactionFetchError}
+        IsTransactionLoading={IsTransactionLoading}
+        setIsTransactionLoading={setIsTransactionLoading}
         products={products}
         setProducts={setProducts} 
         AddNewBtnDisplay={AddNewBtnDisplay}
